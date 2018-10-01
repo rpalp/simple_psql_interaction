@@ -3,15 +3,16 @@ package com.alpdev;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.Statement;
 
-
-
+//Database access class
 public class DAO {
 
     private String dbUrl;
     private String user;
     private String pass;
     private Connection connection = null;
+    private Statement statement = null;
 
     public String getdbUrl() {
         return dbUrl;
@@ -54,7 +55,7 @@ public class DAO {
         return true;
     }
 
-    public Connection conntect2DB () {
+    public void getConntection () {
         try {
             connection = DriverManager
                     .getConnection(dbUrl, user, pass);
@@ -63,15 +64,18 @@ public class DAO {
                 SQLException e) {
             System.out.println("Connection Failed");
             e.printStackTrace();
-            return null;
         }
 
         if (connection != null) {
             System.out.println("You successfully connected to database now");
-            return connection;
         } else {
             System.out.println("Failed to make connection to database");
-            return null;
+        }
+    }
+
+    public void connect2DB () {
+        if (this.test_JDBC_Conntection()) {
+            this.getConntection();
         }
     }
 }

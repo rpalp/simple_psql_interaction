@@ -3,6 +3,7 @@ package com.alpdev;
 
 import java.sql.Connection;
 
+
 public class Main {
 
     //  Database credentials
@@ -13,10 +14,8 @@ public class Main {
         mydb.setUser("postgres");
         mydb.setPass("mysecretpassword");
 
-        Connection connection = null;
-        if (mydb.test_JDBC_Conntection()) {
-            connection = mydb.conntect2DB();
-        }
+        mydb.connect2DB();
+
     }
 }
 
