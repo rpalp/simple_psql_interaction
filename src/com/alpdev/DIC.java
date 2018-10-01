@@ -37,7 +37,17 @@ public class DIC extends DAO {
     }
 
     public void setDataToDB (String name, String surName, int age) {
+        String insertTableSQL = "INSERT INTO test_user_list(givenName, surName, age) VALUES('" + name + "', '" + surName + "', " + age + ")";
+        try {
+            Statement statement = getStatement();
+            int result = statement.executeUpdate(insertTableSQL);
+            System.out.println(result + " row(s) has been added.");
+        } catch (SQLException e) {
+            System.out.println("Statement query Failed");
+            e.printStackTrace();
+        }
 
-        return;
+
+
     }
 }

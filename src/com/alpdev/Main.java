@@ -1,9 +1,6 @@
 package com.alpdev;
 
 
-import java.sql.Connection;
-
-
 public class Main {
 
     //  Database credentials
@@ -15,8 +12,8 @@ public class Main {
         mydb.setPass("mysecretpassword");
 
         mydb.connect2DB();
+        mydb.setDataToDB("Fedor", "Filatov", 33);
         mydb.getDataFromDB();
-
     }
 }
 
