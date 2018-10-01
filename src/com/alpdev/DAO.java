@@ -55,27 +55,40 @@ public class DAO {
         return true;
     }
 
-    public void getConntection () {
+    public boolean getConntection () {
         try {
             connection = DriverManager
                     .getConnection(dbUrl, user, pass);
 
-        } catch (
-                SQLException e) {
+        } catch (SQLException e) {
             System.out.println("Connection Failed");
             e.printStackTrace();
         }
 
         if (connection != null) {
             System.out.println("You successfully connected to database now");
+            return true;
         } else {
             System.out.println("Failed to make connection to database");
+            return false;
         }
     }
 
-    public void connect2DB () {
-        if (this.test_JDBC_Conntection()) {
-            this.getConntection();
+    public void getStatement () {
+        try {
+            statement = connection.createStatement();
+        } catch (SQLException e) {
+            System.out.println("Statement creating Failed");
+            e.printStackTrace();
+            return;
         }
+        System.out.println("Statement was created successfully.");
+    }
+
+    public void connect2DB () {
+        if (this.test_JDBC_Conntection())
+            if(this.getConntection())
+                getStatement();
+
     }
 }
