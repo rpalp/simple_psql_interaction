@@ -1,6 +1,7 @@
 package com.alpdev;
 
 
+import java.sql.Connection;
 
 public class Main {
 
@@ -12,8 +13,9 @@ public class Main {
         mydb.setUser("postgres");
         mydb.setPass("mysecretpassword");
 
+        Connection connection = null;
         if (mydb.test_JDBC_Conntection()) {
-            mydb.conntect2DB();
+            connection = mydb.conntect2DB();
         }
     }
 }

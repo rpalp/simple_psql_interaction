@@ -8,9 +8,9 @@ import java.sql.SQLException;
 
 public class DAO {
 
-    private static String dbUrl;
-    private static String user;
-    private static String pass;
+    private String dbUrl;
+    private String user;
+    private String pass;
     private Connection connection = null;
 
     public String getdbUrl() {
@@ -18,7 +18,7 @@ public class DAO {
     }
 
     public void setdbUrl(String dbUrl) {
-        DAO.dbUrl = dbUrl;
+        this.dbUrl = dbUrl;
     }
 
     public String getUser() {
@@ -26,7 +26,7 @@ public class DAO {
     }
 
     public void setUser(String user) {
-        DAO.user = user;
+        this.user = user;
     }
 
     public String getPass() {
@@ -34,7 +34,7 @@ public class DAO {
     }
 
     public void setPass(String pass) {
-        DAO.pass = pass;
+        this.pass = pass;
     }
 
 
@@ -54,7 +54,7 @@ public class DAO {
         return true;
     }
 
-    public void conntect2DB () {
+    public Connection conntect2DB () {
         try {
             connection = DriverManager
                     .getConnection(dbUrl, user, pass);
@@ -63,13 +63,15 @@ public class DAO {
                 SQLException e) {
             System.out.println("Connection Failed");
             e.printStackTrace();
-            return;
+            return null;
         }
 
         if (connection != null) {
             System.out.println("You successfully connected to database now");
+            return connection;
         } else {
             System.out.println("Failed to make connection to database");
+            return null;
         }
     }
 }
