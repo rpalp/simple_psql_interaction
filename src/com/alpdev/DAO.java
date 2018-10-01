@@ -12,7 +12,6 @@ public class DAO {
     private String user;
     private String pass;
     private Connection connection = null;
-    private Statement statement = null;
 
     public String getdbUrl() {
         return dbUrl;
@@ -74,21 +73,22 @@ public class DAO {
         }
     }
 
-    public void getStatement () {
+    public Statement getStatement () {
+        Statement statement;
         try {
             statement = connection.createStatement();
         } catch (SQLException e) {
             System.out.println("Statement creating Failed");
             e.printStackTrace();
-            return;
+            return null;
         }
         System.out.println("Statement was created successfully.");
+        return statement;
     }
 
     public void connect2DB () {
         if (this.test_JDBC_Conntection())
-            if(this.getConntection())
-                getStatement();
+            this.getConntection();
 
     }
 }
